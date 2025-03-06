@@ -38,12 +38,6 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
             "group": "Direct Call",
             "pages": [
               "api-reference/direct-call/trigger"
