@@ -38,9 +38,15 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "Call",
+            "group": "API Documentation",
             "pages": [
-              "api-reference/call/trigger"
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Direct Call",
+            "pages": [
+              "api-reference/direct-call/trigger"
             ]
           },
           {
