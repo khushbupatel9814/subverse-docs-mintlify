@@ -38,18 +38,17 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Call",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/call/trigger"
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "Workflow",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/workflow/trigger",
+              "api-reference/workflow/edit",
+              "api-reference/workflow/delete"
             ]
           }
         ]
