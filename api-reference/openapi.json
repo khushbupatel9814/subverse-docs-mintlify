@@ -1,0 +1,628 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "SubVerse API reference",
+    "description": "Detailed guide on how to use the SubVerse APIs",
+    "license": {
+      "name": "MIT"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://subverseai.com/api"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/campaign/trigger-call": {
+      "post": {
+        "description": "Directly trigger a call without workflow",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DirectTriggerCall"
+              },
+              "examples": {
+                "ValidRequest": {
+                  "summary": "Example of trigger workflow call",
+                  "value": {
+                    "phone_number": "+912298765432",
+                    "metadata": {
+                      "email": "johndoe@subverseai.com",
+                      "name": "John Doe",
+                      "id": "JD75816540"
+                    },
+                    "botNumber": "+912298765432",
+                    "useCase": "test_case",
+                    "options": {
+                      "transcriptLanguage": "hi",
+                      "allowedOverallInterruptions": "True",
+                      "allowedInterruptionsInitially": "False",
+                      "ttsLanguage": "hi",
+                      "voiceId": "IvLWq57RKibBrqZGpQrC",
+                      "speed": "2",
+                      "transferNumber": "+912298765432",
+                      "communicationMethod": "two_way",
+                      "dtmfEnabled": "False",
+                      "initialMessage": "Hi, ${name} how can I assist you today?",
+                      "additionalContext": "The caller is asking about a refund request submitted yesterday."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns error or success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                },
+                "examples": {
+                  "200 success": {
+                    "summary": "200 - Call triggered successfully",
+                    "value": {
+                      "responseCode": 200,
+                      "message": "Call triggered successfully",
+                      "data": null
+                    }
+                  },
+                  "400 error": {
+                    "summary": "400 - Phone number error",
+                    "value": {
+                      "responseCode": 400,
+                      "message": "Phone number is required",
+                      "data": null
+                    }
+                  },
+                  "401 error": {
+                    "summary": "401 - Api key is missing error",
+                    "value": {
+                      "responseCode": 401,
+                      "message": "Api key is missing",
+                      "data": null
+                    }
+                  },
+                  "404 error": {
+                    "summary": "404 - Bot number error",
+                    "value": {
+                      "responseCode": 404,
+                      "message": "Bot number is required",
+                      "data": null
+                    }
+                  },
+                  "500 error": {
+                    "summary": "500 - Internal server error",
+                    "value": {
+                      "responseCode": 500,
+                      "message": "Internal server error",
+                      "data": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workflow/call/{workflowId}": {
+      "post": {
+        "description": "Trigger a call in the workflow",
+        "parameters": [
+          {
+            "name": "workflowId",
+            "in": "path",
+            "description": "Unique identifier of the workflow.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkflowTriggerCall"
+              },
+              "examples": {
+                "ValidRequest": {
+                  "summary": "Example of trigger workflow call",
+                  "value": {
+                    "customer_number": "+912298765432",
+                    "customer_details": {
+                      "email": "johndoe@subverseai.com",
+                      "name": "John Doe",
+                      "id": "JD75816540"
+                    },
+                    "bot_number": "+912298765432",
+                    "use_case": "test_case",
+                    "schedule_time": "2025-01-22T08:14:57Z",
+                    "options": {
+                      "transcriptLanguage": "hi",
+                      "allowedOverallInterruptions": "True",
+                      "allowedInterruptionsInitially": "False",
+                      "ttsLanguage": "hi",
+                      "voiceId": "IvLWq57RKibBrqZGpQrC",
+                      "speed": "2",
+                      "transferNumber": "+912298765432",
+                      "communicationMethod": "two_way",
+                      "dtmfEnabled": "False",
+                      "initialMessage": "Hi, ${name} how can I assist you today?",
+                      "additionalContext": "The caller is asking about a refund request submitted yesterday."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns error or success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                },
+                "examples": {
+                  "200 success": {
+                    "summary": "200 - Workflow call triggered successfully",
+                    "value": {
+                      "responseCode": 200,
+                      "message": "Workflow call triggered successfully",
+                      "data": null
+                    }
+                  },
+                  "400 error": {
+                    "summary": "400 - Workflow ID required error",
+                    "value": {
+                      "responseCode": 400,
+                      "message": "Workflow id is required",
+                      "data": null
+                    }
+                  },
+                  "401 error": {
+                    "summary": "401 - Api key is missing error",
+                    "value": {
+                      "responseCode": 401,
+                      "message": "Api key is missing",
+                      "data": null
+                    }
+                  },
+                  "404 error": {
+                    "summary": "404 - Workflow not found error",
+                    "value": {
+                      "responseCode": 404,
+                      "message": "Workflow not found",
+                      "data": null
+                    }
+                  },
+                  "500 error": {
+                    "summary": "500 - Internal server error",
+                    "value": {
+                      "responseCode": 500,
+                      "message": "Internal server error",
+                      "data": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Edit details of the call still in queue",
+        "parameters": [
+          {
+            "name": "workflowId",
+            "in": "path",
+            "description": "Unique identifier of the workflow.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkflowTriggerCall"
+              },
+              "examples": {
+                "ValidRequest": {
+                  "summary": "Example of trigger workflow call",
+                  "value": {
+                    "customer_number": "+912298765432",
+                    "customer_details": {
+                      "email": "johndoe@subverseai.com",
+                      "name": "John Doe",
+                      "id": "JD75816540"
+                    },
+                    "bot_number": "+912298765432",
+                    "use_case": "test_case",
+                    "schedule_time": "2025-01-22T08:14:57Z",
+                    "options": {
+                      "transcriptLanguage": "hi",
+                      "allowedOverallInterruptions": "True",
+                      "allowedInterruptionsInitially": "False",
+                      "ttsLanguage": "hi",
+                      "voiceId": "IvLWq57RKibBrqZGpQrC",
+                      "speed": "2",
+                      "transferNumber": "+912298765432",
+                      "communicationMethod": "two_way",
+                      "dtmfEnabled": "False",
+                      "initialMessage": "Hi, ${name} how can I assist you today?",
+                      "additionalContext": "The caller is asking about a refund request submitted yesterday."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns error or success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                },
+                "examples": {
+                  "200 success": {
+                    "summary": "200 - Workflow call details updated successfully",
+                    "value": {
+                      "responseCode": 200,
+                      "message": "Workflow call details updated successfully",
+                      "data": null
+                    }
+                  },
+                  "400 error": {
+                    "summary": "400 - Not in queue error",
+                    "value": {
+                      "responseCode": 400,
+                      "message": "User call already placed, not found in queue",
+                      "data": null
+                    }
+                  },
+                  "401 error": {
+                    "summary": "401 - Api key is missing error",
+                    "value": {
+                      "responseCode": 401,
+                      "message": "Api key is missing",
+                      "data": null
+                    }
+                  },
+                  "404 error": {
+                    "summary": "404 - Workflow not found error",
+                    "value": {
+                      "responseCode": 404,
+                      "message": "Workflow not found",
+                      "data": null
+                    }
+                  },
+                  "500 error": {
+                    "summary": "500 - Internal server error",
+                    "value": {
+                      "responseCode": 500,
+                      "message": "Internal server error",
+                      "data": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete call request from the call queue",
+        "parameters": [
+          {
+            "name": "workflowId",
+            "in": "path",
+            "description": "Unique identifier of the workflow.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "customer_number"
+                ],
+                "properties": {
+                  "customer_number": {
+                    "type": "string",
+                    "description": "User's phone number. Must be a valid phone number with country code, with or without '+' prefix."
+                  }
+                }
+              },
+              "examples": {
+                "ValidRequest": {
+                  "summary": "Example of trigger workflow call",
+                  "value": {
+                    "customer_number": "+912298765432"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns error or success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiResponse"
+                },
+                "examples": {
+                  "200 success": {
+                    "summary": "200 - Workflow call details updated successfully",
+                    "value": {
+                      "responseCode": 200,
+                      "message": "Workflow call details updated successfully",
+                      "data": null
+                    }
+                  },
+                  "400 error": {
+                    "summary": "400 - Not in queue error",
+                    "value": {
+                      "responseCode": 400,
+                      "message": "User call already placed, not found in queue",
+                      "data": null
+                    }
+                  },
+                  "401 error": {
+                    "summary": "401 - Api key is missing error",
+                    "value": {
+                      "responseCode": 401,
+                      "message": "Api key is missing",
+                      "data": null
+                    }
+                  },
+                  "404 error": {
+                    "summary": "404 - Workflow not found error",
+                    "value": {
+                      "responseCode": 404,
+                      "message": "Workflow not found",
+                      "data": null
+                    }
+                  },
+                  "500 error": {
+                    "summary": "500 - Internal server error",
+                    "value": {
+                      "responseCode": 500,
+                      "message": "Internal server error",
+                      "data": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DirectTriggerCall": {
+        "type": "object",
+        "required": [
+          "phone_number",
+          "useCase"
+        ],
+        "properties": {
+          "phone_number": {
+            "type": "string",
+            "description": "User's phone number. Must be a valid phone number with country code, with or without '+' prefix."
+          },
+          "useCase": {
+            "type": "string",
+            "description": "Use case to be used for the call, find it in Voice Agents sections in dashboard."
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Customer's details to be used in the call, use them in voice agent initial and system prompt as ${variable_name} format. These will be replaced by actual value of the variables."
+          },
+          "botNumber": {
+            "type": "string",
+            "description": "Voice agent phone number used to place call. Default value: bot number mentioned in Voice Agents sections in dashboard. Must be a valid phone number with country code, with or without '+' prefix."
+          },
+          "options": {
+            "type": "object",
+            "description": "Default values as defined in the Voice Agents section in dashboard. Use this if you want to override those options. E.g. if you want to change the language, voice, initial prompt, etc.",
+            "$ref": "#/components/schemas/VoiceAgentOptions"
+          }
+        }
+      },
+      "WorkflowTriggerCall": {
+        "type": "object",
+        "required": [
+          "customer_number"
+        ],
+        "properties": {
+          "customer_number": {
+            "type": "string",
+            "description": "User's phone number. Must be a valid phone number with country code, with or without '+' prefix."
+          },
+          "customer_details": {
+            "type": "object",
+            "description": "User's details to be used in the call, use them in voice agent initial and system prompt as ${variable_name} format. These will be replaced by actual value of the variables."
+          },
+          "use_case": {
+            "type": "string",
+            "description": "Use case to be used for the call, find it in Voice Agents sections in dashboard. Default value: use case selected in the workflow."
+          },
+          "bot_number": {
+            "type": "string",
+            "description": "Voice agent phone number used to place call. Must be a valid phone number with country code, with or without '+' prefix. Default value: bot number selected in the workflow."
+          },
+          "schedule_time": {
+            "type": "string",
+            "description": "Schedule customer's call at a specific future time. Follow ISO date format (YYYY-MM-DDTHH:MM:SSZ). Default value: current time, to trigger the call immediately."
+          },
+          "options": {
+            "type": "object",
+            "description": "Default values as defined in the Voice Agents section in dashboard. Use this if you want to override those options. E.g. if you want to change the language, voice, initial prompt, etc.",
+            "$ref": "#/components/schemas/VoiceAgentOptions"
+          }
+        }
+      },
+      "VoiceAgentOptions": {
+        "type": "object",
+        "properties": {
+          "transcriptLanguage": {
+            "type": "string",
+            "description": "The language used to capture and understand what the user says.",
+            "enum": [
+              "en-IN",
+              "hi"
+            ]
+          },
+          "ttsLanguage": {
+            "type": "string",
+            "description": "Default language of the voice agent used to speak with the user.",
+            "enum": [
+              "en",
+              "hi"
+            ],
+            "example": "en"
+          },
+          "voiceId": {
+            "type": "string",
+            "description": "The specific voice if that the voice agent will use. You can also provide custom voice id other than the ones mentioned here. Recommended list of Indian voices below: \n M LEO ENG - 'TNHbwIMY5QmLqZdvjhNn'\n F MONIKA ENG - '2zRM7PkgwBPiau2jvVXc'\n F RIYA ENG - 'vYENaCJHl4vFKNDYPr8y'\n M LEO BOTH - 'IvLWq57RKibBrqZGpQrC'\n F MONIKA BOTH - '1qEiC6qsybMkmnNdVMbK'\n F RIYA BOTH - 'mActWQg9kibLro6Z2ouY'",
+            "enum": [
+              "TNHbwIMY5QmLqZdvjhNn",
+              "2zRM7PkgwBPiau2jvVXc",
+              "vYENaCJHl4vFKNDYPr8y",
+              "IvLWq57RKibBrqZGpQrC",
+              "1qEiC6qsybMkmnNdVMbK",
+              "mActWQg9kibLro6Z2ouY",
+              "mention any other custom voice id"
+            ]
+          },
+          "initialMessage": {
+            "type": "string",
+            "description": "The initial greetings message. The dynamic variables (e.g. ${name}) will be replaced by actual value provided in customer_details or metadata."
+          },
+          "additionalContext": {
+            "type": "string",
+            "description": "Extra context provided to the voice agent (e.g. details that are unique to the target customer category, which is not mentioned in the system prompt). The dynamic variables (e.g. ${name}) will be replaced by actual value provided in customer_details or metadata."
+          },
+          "allowedOverallInterruptions": {
+            "type": "string",
+            "description": "Whether the voice agent should stop speaking upon user interruption during the entire conversation.",
+            "enum": [
+              "True",
+              "False"
+            ]
+          },
+          "allowedInterruptionsInitially": {
+            "type": "string",
+            "description": "Whether the voice agent should stop speaking upon user interruption while initial greetings message is playing.",
+            "enum": [
+              "True",
+              "False"
+            ]
+          },
+          "speed": {
+            "type": "string",
+            "description": "How fast or slow the voice agent should talk.",
+            "enum": [
+              "0",
+              "1",
+              "2",
+              "3"
+            ]
+          },
+          "transferNumber": {
+            "type": "string",
+            "description": "Human agent's phone number to transfer the call in case of escalations. Must be a valid phone number with country code, with or without '+' prefix."
+          },
+          "communicationMethod": {
+            "type": "string",
+            "description": "Whether the communication is two-way (inetractive conversation) or one-way (speak only the initial prompt and hang up).",
+            "enum": [
+              "two_way",
+              "one_way"
+            ]
+          },
+          "dtmfEnabled": {
+            "type": "string",
+            "description": "Whether the user can press buttons on their phone (like 'Press 1 for support') to interact with the agent.",
+            "enum": [
+              "True",
+              "False"
+            ]
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "required": [
+          "responseCode",
+          "message"
+        ],
+        "properties": {
+          "responseCode": {
+            "type": "integer",
+            "description": "Always returns 200 value, with error or success response details in message."
+          },
+          "message": {
+            "type": "string",
+            "description": "Success or error message with description."
+          },
+          "data": {
+            "nullable": true,
+            "description": "Additional details if available."
+          }
+        }
+      },
+      "Error": {
+        "required": [
+          "error",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key",
+        "description": "Authentication header containing API key from SubVerse dashboard."
+      }
+    }
+  }
+}
