@@ -1,0 +1,67 @@
+---
+title: 'Telephony: Inbound and Outbound Calls'
+description: 'Integrate with your telephony system using SIP trunk'
+---
+
+
+Integrate your telephony system with SIP trunking to handle inbound and outbound calls through your voice agent.
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/integrations/telephony/telephony-dashboard.png"
+/>
+
+## Outbound trunk
+Setup your voice agent to make outgoing calls from your number.
+### Create a SIP trunk
+1. Buy a virtual number from your cloud telephony service provider.
+2. There are 2 methods for authentication: IP whitelisting, or auth credentials.
+3. Currently SubVerse SIP server does not have a static IP, so if you opt for the IP route, you need to whitelist all the IP addresses in the range like this: `0.0.0.0/1`, `128.0.0.0/1`.
+4. It is recommended that you also setup Auth Username and Password for secure communication.
+5. Refer to the configuration guides for [Twilio](https://www.twilio.com/en-us/blog/elastic-sip-trunking-step-by-step-setup), [Telnyx](https://support.telnyx.com/en/articles/8096455-how-to-configure-a-sip-trunk#h_78916f5af1), [Vonage](https://developer.vonage.com/en/sip/sip-dashboard#outbound-calling), [Plivo](https://www.plivo.com/docs/sip-trunking#outbound-trunks-termination).
+
+### Link to the voice agent
+
+<img
+  style={{ borderRadius: '0.5rem', height: '300px' }}
+  src="/images/integrations/telephony/link-outbound-trunk.png"
+/>
+
+1. Provide a **Name** for the connection.
+2. Input the **Phone Number** with country code.
+3. Enter the **SIP Address** or **Termination URI** provided by your telephony provider.
+4. Provide **Auth Username** and **Auth Password** for authentication, leave blank if not configured.
+5. You can start using this number for making calls through voice agents interface, workflows, or call APIs.
+
+## Inbound trunk
+Setup your voice agent to accept incoming calls on your number.
+### Create a SIP trunk
+1. Buy a virtual number from your cloud telephony service provider.
+2. Configure an inbound SIP trunk with **Origination URI** as `4ers9l0ayi7.sip.livekit.cloud`.
+3. It is recommended that you also setup Auth Username and Password for secure communication.
+4. Refer to the configuration guides for [Twilio](https://www.twilio.com/en-us/blog/elastic-sip-trunking-step-by-step-setup), [Telnyx](https://support.telnyx.com/en/articles/8096455-how-to-configure-a-sip-trunk#h_78916f5af1), [Vonage](https://developer.vonage.com/en/sip/sip-dashboard#inbound-calling), [Plivo](https://www.plivo.com/docs/sip-trunking#inbound-trunks-origination).
+
+<Tip>
+  Use `4ers9l0ayi7.india.sip.livekit.cloud` for region pinning to India SIP servers.
+</Tip>
+
+### Link to the voice agent
+
+<img
+  style={{ borderRadius: '0.5rem', height: '250px' }}
+  src="/images/integrations/telephony/link-inbound-trunk.png"
+/>
+
+1. Provide a **Name** for the connection.
+2. Input the **Phone Number** with country code.
+3. Provide **Auth Username** and **Auth Password** for authentication, leave blank if not configured.
+4. Click on **Map Voicebot Usecase** and select the voice agent you want to use while accepting the calls.
+
+<Tip>
+  Every time you update the voice agent use case, make sure to map it again to the number to ensure it has the updated context and settings.
+</Tip>
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/integrations/telephony/map-trunk-usecase.png"
+/>

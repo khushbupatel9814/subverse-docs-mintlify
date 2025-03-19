@@ -16,20 +16,52 @@
           {
             "group": "Voice Agents",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              "voice-agents/quickstart",
+              {
+                "group": "Agent Configuration Guide",
+                "pages": [
+                  "voice-agents/prompting",
+                  "voice-agents/speech-detection",
+                  "voice-agents/voice-settings",
+                  "voice-agents/call-settings",
+                  "voice-agents/knowledge-base",
+                  "voice-agents/llm-tools"
+                ]
+              },
+              "voice-agents/test-call"
             ]
           },
           {
-            "group": "Essentials",
+            "group": "Shopify",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
+              "shopify/shopify-setup",
+              "shopify/subverse-setup"
+            ]
+          },
+          {
+            "group": "Workflow",
+            "pages": [
+              "workflow/quickstart",
+              "workflow/data-source-blocks",
+              "workflow/agent-blocks",
+              "workflow/function-blocks"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/knowledge-base",
+              "integrations/llm-tools",
+              "integrations/telephony",
+              "integrations/api-keys"
+            ]
+          },
+          {
+            "group": "Monitor",
+            "pages": [
+              "monitor/dashboard",
+              "monitor/customer-interactions",
+              "monitor/billing"
             ]
           }
         ]

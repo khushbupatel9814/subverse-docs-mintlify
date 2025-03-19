@@ -1,0 +1,38 @@
+---
+title: 'LLM Tools'
+description: 'Tasks you want the agents to perform during real time conversations'
+---
+
+LLM Tools define specific actions that AI agents can execute during live conversations, such as transferring the call, sending emails, updating databases, or checking order status.
+
+## Default tools
+- `transfer_call`: Transfer the call to humna agent to handle escalations.
+- `end_call`: Hang up the call on closure.
+- `query_knowledge_base`: Fetch more details from company knowledge base.
+
+## Create a new LLM tool
+
+<img
+  style={{ borderRadius: '0.5rem' }}
+  src="/images/integrations/llm-tools/create-llm-tool.png"
+/>
+
+- Enter an **LLM Tool Name** (e.g., send_email).
+- Provide a **Description** for what task it performs (e.g., "Sends an email to the customer").
+- Set an **Error Message** in case function fails to perform the task (e.g., "Couldn't complete the task, tell them it will be done after call.").
+- Set a **Return Message** for tasks running in background (e.g., "Task running in the background").
+- Enable/Disable **Background Task** based on whether the function runs asynchronously. `Enable` this if you don't want the voice agent to wait for its completion e.g., sending an email to the customer. `Disable` if you want to wait for the task to finish before agent replies e.g., fetching order details.
+
+## Add Parameters
+Define parameters required by the tool with description so LLM can understand its use. This are passed as inputs to the executing function.
+- Select a **Data Type** (e.g., `string`, `number`, `boolean`).
+- Define an **Identifier** (e.g., `customer_email`).
+- Add a **Description** to help the LLM understand the data. (e.g., "customer's email address").
+
+## Start Using
+- Save the Tool to make it available for AI agents.
+- You can you can either use it in [voice agents](http://localhost:3000/voice-agents/knowledge-base) or [workflows](http://localhost:3000/workflow/agent-blocks#ai-query-agent).
+
+<Tip>
+  Explicity instruct the AI agent to call tool to ensure it is always executed when required e.g., If user do not have any questions, call tool 'end_call' to hang up.
+</Tip>
