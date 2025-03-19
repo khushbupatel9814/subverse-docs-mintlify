@@ -6,7 +6,7 @@ description: 'Push data from your company databases'
 Data Source Blocks allow you to inject customer data and other relevant information to trigger the workflow.
 
 ## Call API block
-Inject customer details into the system using a [workflow call API](https://docs.subverseai.com/api-reference/workflow/trigger).
+Inject customer details into the system using a [workflow call API](/api-reference/workflow/trigger).
 
 <img
   style={{ borderRadius: '0.5rem', width: '300px' }}
@@ -19,7 +19,7 @@ Inject customer details into the system using a [workflow call API](https://docs
 - **Customer_Number**: Customer's phone number.
 - **Customer_Details**: Customer's details such as name, email in JSON format.
 - **Schedule_Time**: Schedule customer's call at a specific future time. Follow ISO date format `YYYY-MM-DDTHH:MM:SSZ`. Default value: current time, to trigger the action immediately.
-- **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](https://docs.subverseai.com/api-reference/workflow/trigger). E.g. if you want to change the language, voice, initial prompt, etc.
+- **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](/voice-agents/prompting). E.g. if you want to change the language, voice, initial prompt, etc.
 
 ## Upload customer data
 Inject customer details into the system using file upload functionality. This is an alterantive for the [Call API block](#call-api-block) explained above. 
@@ -37,7 +37,7 @@ Upload an Excel / CSV file with customer details.
 - **Use_Case**: Define voice agent to be used.
 - **Customer_Number**: Customer's phone number.
 - **Customer_Details**: Customer's details such as name, email in JSON format.
-- **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](https://docs.subverseai.com/api-reference/workflow/trigger). E.g. if you want to change the language, voice, initial prompt, etc.
+- **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](/voice-agents/prompting). E.g. if you want to change the language, voice, initial prompt, etc.
 
 ## Incoming call block
 This triggers a flow as soon as customer calls voice agent. Details of customer's incoming call with voie agent are used as outputs for subsequent actions.

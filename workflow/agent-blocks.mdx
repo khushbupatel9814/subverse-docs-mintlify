@@ -19,7 +19,7 @@ Call details for voice agent's outgoing calls with customers.
 - **Customer_Number**: Customer's phone number.
 - **Customer_Details**: Customer's details such as name, email in JSON format
 - **Schedule_Time**: Schedule customer's call at a specific future time. Follow ISO date format `YYYY-MM-DDTHH:MM:SSZ`. Default value: current time, to trigger the action immediately.
-- **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](https://docs.subverseai.com/api-reference/workflow/trigger). E.g. if you want to change the language, voice, initial prompt, etc.
+- **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](/voice-agents/prompting). E.g. if you want to change the language, voice, initial prompt, etc.
 
 **Outputs**
 - **Bot_Number**: Number voice agent used to make a call.
@@ -59,4 +59,4 @@ You are a backend agent for SubVerse AI to perform multiple tasks based on custo
 
 **Outputs**
 - **LLM_Response**: The AI Query Agent generates a response based on the user's query, using the context and knowledge base you provided.
-- **Tool Outputs**: The block also produces outputs from the selected tools, which can be used as inputs to [function blocks](http://localhost:3001/workflow/function-blocks), allowing you to automate follow-up tasks or notifications.
+- **Tool Outputs**: The block also produces outputs from the selected tools, which can be used as inputs to [function blocks](/workflow/function-blocks), allowing you to automate follow-up tasks or notifications.
