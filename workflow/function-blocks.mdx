@@ -21,6 +21,13 @@ Schedules a callback with the customer, passing additional context.
 - **Bot_Number** – Phone number to be used to call the customer. This can be linked to a connecting block or selected from dropdown option. Data linkage will override pre-selected dropdown option.
 - **Use_Case** – Voice agent that will handle the callback. This can be linked to a connecting block or selected from dropdown option. Data linkage will override pre-selected dropdown option.
 - **Customer_Number** – Customer's phone number.
+- **Customer_Details**: Customer's details such as name, email in JSON format
+- **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](/voice-agents/prompting). E.g. if you want to change the language, voice, initial prompt, etc.
+- **No_Of_Retries**: Number of retries if call failed if provided
+- **Retries_After_In_Hrs**: Retry interval (in hrs) if provided
+- **Start_Working_Hour**: 24 hour format (HH:MM), If provided call made before start hours will rescheduled at start hour of the day.
+- **End_Working_Hour**: 24 hour format (HH:MM), If provided call cannot be made after the end work hour and if call made after end hours will rescheduled at start hour of the next day.
+- **Timezone**: Call between start working hour and end working hour in timezone if provided [Default: Asia/Kolkata]
 
 **Outputs**
 - **Callback_scheduled** – Confirms if the callback was successfully scheduled - `True` or `False`.

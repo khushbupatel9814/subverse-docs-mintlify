@@ -52,7 +52,12 @@
                       "dtmfEnabled": "False",
                       "initialMessage": "Hi, ${name} how can I assist you today?",
                       "additionalContext": "The caller is asking about a refund request submitted yesterday."
-                    }
+                    },
+                    "no_of_retries": 1,
+                    "retry_after_in_hrs": 1,
+                    "start_working_hour": "09:00",
+                    "end_working_hour": "20:00",
+                    "timezone": "Asia/Kolkata"
                   }
                 }
               }
@@ -160,7 +165,12 @@
                       "dtmfEnabled": "False",
                       "initialMessage": "Hi, ${name} how can I assist you today?",
                       "additionalContext": "The caller is asking about a refund request submitted yesterday."
-                    }
+                    },
+                    "no_of_retries": 1,
+                    "retry_after_in_hrs": 1,
+                    "start_working_hour": "09:00",
+                    "end_working_hour": "20:00",
+                    "timezone": "Asia/Kolkata"
                   }
                 }
               }
@@ -266,7 +276,12 @@
                       "dtmfEnabled": "False",
                       "initialMessage": "Hi, ${name} how can I assist you today?",
                       "additionalContext": "The caller is asking about a refund request submitted yesterday."
-                    }
+                    },
+                    "no_of_retries": 1,
+                    "retry_after_in_hrs": 1,
+                    "start_working_hour": "09:00",
+                    "end_working_hour": "20:00",
+                    "timezone": "Asia/Kolkata"
                   }
                 }
               }
@@ -453,6 +468,26 @@
             "type": "object",
             "description": "Default values as defined in the Voice Agents section in dashboard. Use this if you want to override those options. E.g. if you want to change the language, voice, initial prompt, etc.",
             "$ref": "#/components/schemas/VoiceAgentOptions"
+          },
+          "no_of_retries": {
+            "type": "number",
+            "description": "Number of retries if call failed if provided"
+          },
+          "retry_after_in_hrs": {
+            "type": "number",
+            "description": "Retry at interval (in hrs) if provided"
+          },
+          "start_working_hour": {
+            "type": "string",
+            "description": "24 hour format (HH:MM). If provided call made before start hours will rescheduled at start hour of the day."
+          },
+          "end_working_hour": {
+            "type": "string",
+            "description": "24 hour format (HH:MM). If provided call made after end hours will rescheduled at start hour of next day."
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Call between start working hour and end working hour in timezone if provided [Default: Asia/Kolkata]"
           }
         }
       },
@@ -486,6 +521,26 @@
             "type": "object",
             "description": "Default values as defined in the Voice Agents section in dashboard. Use this if you want to override those options. E.g. if you want to change the language, voice, initial prompt, etc.",
             "$ref": "#/components/schemas/VoiceAgentOptions"
+          },
+          "no_of_retries": {
+            "type": "number",
+            "description": "Number of retries if call failed if provided"
+          },
+          "retry_after_in_hrs": {
+            "type": "number",
+            "description": "Retry at interval (in hrs) if provided"
+          },
+          "start_working_hour": {
+            "type": "string",
+            "description": "24 hour format (HH:MM). If provided call made before start hours will rescheduled at start hour of the day."
+          },
+          "end_working_hour": {
+            "type": "string",
+            "description": "24 hour format (HH:MM). If provided call made after end hours will rescheduled at start hour of next day."
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Call between start working hour and end working hour in timezone if provided [Default: Asia/Kolkata]"
           }
         }
       },

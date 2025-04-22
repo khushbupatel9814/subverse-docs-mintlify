@@ -20,17 +20,28 @@ Call details for voice agent's outgoing calls with customers.
 - **Customer_Details**: Customer's details such as name, email in JSON format
 - **Schedule_Time**: Schedule customer's call at a specific future time. Follow ISO date format `YYYY-MM-DDTHH:MM:SSZ`. Default value: current time, to trigger the action immediately.
 - **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](/voice-agents/prompting). E.g. if you want to change the language, voice, initial prompt, etc.
+- **No_Of_Retries**: Number of retries if call failed if provided
+- **Retries_After_In_Hrs**: Retry interval (in hrs) if provided
+- **Start_Working_Hour**: 24 hour format (HH:MM), If provided call made before start hours will rescheduled at start hour of the day.
+- **End_Working_Hour**: 24 hour format (HH:MM), If provided call cannot be made after the end work hour and if call made after end hours will rescheduled at start hour of the next day.
+- **Timezone**: Call between start working hour and end working hour in timezone if provided [Default: Asia/Kolkata]
 
 **Outputs**
 - **Bot_Number**: Number voice agent used to make a call.
 - **Use_Case**: Voice agent that handled the call.
 - **Customer_Number**: Customer's phone number.
 - **Customer_Details**: Customer's details such as name, email in JSON format.
+- **Agent_Options**: Options provided to override settings
 - **Call_Time**: Time at which customer dialed vocie agent. This follows ISO date format `YYYY-MM-DDTHH:MM:SSZ`.
 - **Call_Status**: Status of the call - `connected` or `couldn't connect`.
 - **Call_Duration**: Status of the call in seconds.
 - **Call_Direction**: Direction of the call - `outbound`.
 - **Transcript**: Transcript of the call with speaker tags.
+- **No_Of_Retries**: Number of retries if call failed if provided
+- **Retries_After_In_Hrs**: Retry interval (in hrs) if provided
+- **Start_Working_Hour**: 24 hour format (HH:MM), If provided call made before start hours will rescheduled at start hour of the day.
+- **End_Working_Hour**: 24 hour format (HH:MM), If provided call cannot be made after the end work hour and if call made after end hours will rescheduled at start hour of the next day.
+- **Timezone**: Call between start working hour and end working hour in timezone if provided [Default: Asia/Kolkata]
 
 
 ## AI Query Agent
