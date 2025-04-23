@@ -20,6 +20,11 @@ Inject customer details into the system using a [workflow call API](/api-referen
 - **Customer_Details**: Customer's details such as name, email in JSON format.
 - **Schedule_Time**: Schedule customer's call at a specific future time. Follow ISO date format `YYYY-MM-DDTHH:MM:SSZ`. Default value: current time, to trigger the action immediately.
 - **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](/voice-agents/prompting). E.g. if you want to change the language, voice, initial prompt, etc.
+- **No_Of_Retries**: Number of retries if call failed if provided
+- **Retries_After_In_Hrs**: Retry interval (in hrs) if provided
+- **Start_Working_Hour**: 24 hour format (HH:MM), If provided call made before start hours will rescheduled at start hour of the day.
+- **End_Working_Hour**: 24 hour format (HH:MM), If provided call cannot be made after the end work hour and if call made after end hours will rescheduled at start hour of the next day.
+- **Timezone**: Call between start working hour and end working hour in timezone if provided [Default: Asia/Kolkata]
 
 ## Upload customer data
 Inject customer details into the system using file upload functionality. This is an alterantive for the [Call API block](#call-api-block) explained above. 
@@ -38,6 +43,11 @@ Upload an Excel / CSV file with customer details.
 - **Customer_Number**: Customer's phone number.
 - **Customer_Details**: Customer's details such as name, email in JSON format.
 - **Agent_Options**: If provided, these will override settings as defined in the [Voice Agents section](/voice-agents/prompting). E.g. if you want to change the language, voice, initial prompt, etc.
+- **No_Of_Retries**: Number of retries if call failed if provided
+- **Retries_After_In_Hrs**: Retry interval (in hrs) if provided
+- **Start_Working_Hour**: 24 hour format (HH:MM), If provided call made before start hours will rescheduled at start hour of the day.
+- **End_Working_Hour**: 24 hour format (HH:MM), If provided call cannot be made after the end work hour and if call made after end hours will rescheduled at start hour of the next day.
+- **Timezone**: Call between start working hour and end working hour in timezone if provided [Default: Asia/Kolkata]
 
 ## Incoming call block
 This triggers a flow as soon as customer calls voice agent. Details of customer's incoming call with voie agent are used as outputs for subsequent actions.
