@@ -148,21 +148,14 @@ Sends events to client side applications. Webhooks enables your workflow to resp
 
 ### Client side set up
 
-**Webhook URL Requirements:**
+**Webhook URL Requirements:**<br />
 Your webhook endpoint must meet the following conditions:
 - Accept **`POST`** requests only.
 - Accept and parse **`application/json`** request bodies.
 - **Respond with JSON** using `Content-Type: application/json`.
 - Use proper HTTP status codes to indicate success or failure.
 
-**Webhook URL Requirements:**
-Your webhook endpoint must meet the following conditions:
-- Accept **`POST`** requests only.
-- Accept and parse **`application/json`** request bodies.
-- **Respond with JSON** using `Content-Type: application/json`.
-- Use proper HTTP status codes to indicate success or failure.
-
-**What does the Webhook receive?**
+**What does the Webhook receive?**<br />
 The webhook node sends the following payload to the provided URL:
 ```json
 POST /your-webhook-endpoint
@@ -175,7 +168,7 @@ Content-Type: application/json
 }
 ```
 
-**How to validate the Webhook Request Authenticity? (Optional but Recommended)**
+**How to validate the Webhook Request Authenticity? (Optional but Recommended)**<br />
 When a `secret` is provided, an **HMAC SHA256** hash is generated using that `secret` and the `timestamp`. This hash ensures the authenticity of the sender.
 
 Validation Snippet with Secret:
@@ -193,7 +186,7 @@ function validateWithSecret(requestBody, secret) {
 }
 ```
 
-**Timestamp Validation (Optional but Recommended)**
+**Timestamp Validation (Optional but Recommended)**<br />
 To guard against replay attacks:
 - Check that the `timestamp` is within **10 minutes (600,000 ms)** of current server time.
 - Reject requests too old or too far in the future.
