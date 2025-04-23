@@ -134,3 +134,72 @@ Sends an Email to the customer.
 
 **Outputs**
 - **Filtered Results**: Returns only the fields that match the specified filter conditions.
+
+
+## Webhook Block
+Sends events to client side applications. Webhooks enables your workflow to respond to external events.
+
+**Inputs**
+- **URL** – Webhook URL to send the events to.
+- **Data** – Data or events to send through webhook, data outputs from other blocks can be linked as inputs.
+
+**Outputs**
+- **Success_message**: Confirms if the Data was successfully sent - `True` or `False`.
+
+### Client side set up
+
+**Webhook URL Requirements:**
+Your webhook endpoint must meet the following conditions:
+- Accept **`POST`** requests only.
+- Accept and parse **`application/json`** request bodies.
+- **Respond with JSON** using `Content-Type: application/json`.
+- Use proper HTTP status codes to indicate success or failure.
+
+**Webhook URL Requirements:**
+Your webhook endpoint must meet the following conditions:
+- Accept **`POST`** requests only.
+- Accept and parse **`application/json`** request bodies.
+- **Respond with JSON** using `Content-Type: application/json`.
+- Use proper HTTP status codes to indicate success or failure.
+
+**What does the Webhook receive?**
+The webhook node sends the following payload to the provided URL:
+```json
+POST /your-webhook-endpoint
+Content-Type: application/json
+
+{
+  "data": { ... }, // Custom data - all the connected blocks data passed to the webhook
+  "timestamp": 1713784015226, // Current Unix timestamp in milliseconds
+  "hash": "generated_hash" // A SHA256 or HMAC SHA256 hash for authentication
+}
+```
+
+**How to validate the Webhook Request Authenticity? (Optional but Recommended)**
+When a `secret` is provided, an **HMAC SHA256** hash is generated using that `secret` and the `timestamp`. This hash ensures the authenticity of the sender.
+
+Validation Snippet with Secret:
+```js
+import { createHmac } from 'crypto';
+
+function validateWithSecret(requestBody, secret) {
+  const { timestamp, hash } = requestBody;
+
+  const expectedHash = createHmac('sha256', secret)
+    .update(String(timestamp))
+    .digest('hex');
+
+  return expectedHash === hash;
+}
+```
+
+**Timestamp Validation (Optional but Recommended)**
+To guard against replay attacks:
+- Check that the `timestamp` is within **10 minutes (600,000 ms)** of current server time.
+- Reject requests too old or too far in the future.
+```js
+function isTimestampValid(timestamp) {
+  const now = Date.now();
+  return Math.abs(now - timestamp) <= 10 * 60 * 1000;
+}
+```
